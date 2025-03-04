@@ -2,7 +2,7 @@
 
 # Ejecutar pruebas dentro del contenedor Docker
 echo "Ejecutando pruebas..."
-docker-compose exec app npm test
+docker-compose exec -T app npm test
 
 # Verificar el estado de las pruebas
 if [ $? -ne 0 ]; then
@@ -12,7 +12,7 @@ fi
 
 # Verificar el formato del código dentro del contenedor Docker (opcional)
 echo "Verificando el formato del código..."
-docker-compose exec app npm run lint
+docker-compose exec -T app npm run lint
 
 # Verificar el estado del linter
 if [ $? -ne 0 ]; then
