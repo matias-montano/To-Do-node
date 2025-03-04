@@ -1,0 +1,18 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Docker
+docker-compose.override.yml
+docker-compose.override.yml
+Dockerfile
+
+# Miscellaneous
+.DS_Store
