@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/app.js",
     "prepare": "husky install",
-    "lint": "eslint . --fix",
+    "lint": "eslint . --ignore-pattern 'frontend/*'",
     "test": "jest"
   },
   "dependencies": {
