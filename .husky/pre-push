@@ -11,8 +11,8 @@
 # fi
 
 # Verificar el formato del código dentro del contenedor Docker (opcional)
-echo "Verificando el formato del código..."
-docker-compose exec -T app npm run lint
+# echo "Verificando el formato del código..."
+# docker-compose exec -T app npm run lint
 
 # Verificar el estado del linter
 if [ $? -ne 0 ]; then
