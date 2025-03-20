@@ -1,0 +1,86 @@
+.navbar {
+  background-color: #141c24;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-logo {
+  cursor: pointer;
+}
+
+.navbar-logo-img {
+  width: 250px;
+  height: auto;
+  margin-top: 5px; /* Baja el logo 0,5 cm (10px) */
+  border-radius: 15px; /* Bordes curvos de 15px */
+}
+
+.navbar-user {
+  position: relative;
+}
+
+.navbar-user-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar-user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.navbar-user-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.navbar-user-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  transition: transform 0.3s;
+}
+
+.navbar-user-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.navbar-user-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #2d3748;
+  border: 1px solid #4caf50;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.navbar-user-menu-item {
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.navbar-user-menu-item:hover {
+  background-color: #4caf50;
+}

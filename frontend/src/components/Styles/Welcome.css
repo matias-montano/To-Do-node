@@ -1,0 +1,68 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1a202c;
+  color: white;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos estén en columna */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  background-color: #1a202c; /* Fondo oscuro */
+}
+
+.card {
+  background-color: #2d3748;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+  border: 2px solid #2d3748;
+  max-width: 400px;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.card:hover {
+  transform: scale(1.05);
+  border-color: #4caf50;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.default-text {
+  display: block;
+}
+
+.hovered-text {
+  display: none;
+}
+
+.card:hover .default-text {
+  display: none;
+}
+
+.card:hover .hovered-text {
+  display: block;
+}
+
+.register-link {
+  margin-top: 20px; /* Espacio entre la tarjeta y el texto */
+  text-align: center; /* Centra el texto */
+}
+
+.register-link span {
+  color: #4caf50;
+  cursor: pointer;
+  text-decoration: underline;
+}

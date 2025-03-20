@@ -16,3 +16,6 @@ Dockerfile
 
 # Miscellaneous
 .DS_Store
+
+# Archivo .gitignore
+.env
