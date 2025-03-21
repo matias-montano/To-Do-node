@@ -1,3 +1,4 @@
+// controlador de registro
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
@@ -6,50 +7,76 @@ import dotenv from 'dotenv';
 dotenv.config();
 const SECRET_KEY = process.env.SECRET_KEY;
 
-// Registrar usuarios
 export const register = async (req, res) => {
   try {
-    const { username, password, image } = req.body;
+    const {
+      username,
+      password,
+      email,
+      phoneNumber,
+      image,
+      position,
+      department,
+      firstName,
+      lastName,
+      dateOfBirth,
+      skills
+    } = req.body;
 
     // Validar campos requeridos
-    if (!username || !password) {
-      return res.status(400).json({ message: 'Usuario y contraseña son requeridos' });
+    if (!username || !password || !email) {
+      return res.status(400).json({ 
+        message: 'Usuario, contraseña y email son requeridos' 
+      });
     }
 
-    // Verificar si el usuario ya existe
-    const existingUser = await User.findOne({ username });
+    // Verificar si el usuario o email ya existen
+    const existingUser = await User.findOne({ 
+      $or: [{ username }, { email }] 
+    });
+    
     if (existingUser) {
-      return res.status(400).json({ message: 'El nombre de usuario ya está en uso' });
+      return res.status(400).json({ 
+        message: 'El nombre de usuario o email ya están en uso' 
+      });
     }
 
     // Encriptar contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Crear nuevo usuario con la imagen
+    // Crear nuevo usuario con todos los campos
     const newUser = new User({
       username,
       password: hashedPassword,
-      image: image, // Asignar directamente el ID de la imagen
-      role: 'user'
+      email,
+      phoneNumber,
+      image,
+      position,
+      department,
+      firstName,
+      lastName,
+      dateOfBirth: dateOfBirth ? new Date(dateOfBirth) : undefined,
+      skills: skills || [],
+      role: 'user',
+      status: 'active',
+      joinedAt: new Date()
     });
 
     // Guardar usuario
     await newUser.save();
-
-    console.log('Usuario creado:', {
-      id: newUser._id,
-      username: newUser.username,
-      role: newUser.role,
-      imageId: newUser.image
-    });
 
     res.status(201).json({ 
       message: 'Usuario registrado exitosamente',
       user: {
         id: newUser._id,
         username: newUser.username,
+        email: newUser.email,
         role: newUser.role,
-        imageId: newUser.image // Incluir el ID de la imagen en la respuesta
+        imageId: newUser.image,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        position: newUser.position,
+        department: newUser.department
       }
     });
 

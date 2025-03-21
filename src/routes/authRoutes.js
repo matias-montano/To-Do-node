@@ -4,7 +4,7 @@ import upload from '../config/gridFsConfig.js';
 import mongoose from 'mongoose';
 import pkg from 'mongodb';
 import { verifyToken } from '../middleware/authMiddleware.js';
-import { getCurrentUser } from '../controllers/UserController.js';
+import { getCurrentUser, updateUser } from '../controllers/UserController.js';
 import { uploadImage, getImage } from '../controllers/imageController.js'; // Importar controladores de imágenes
 
 const { GridFSBucket } = pkg;
@@ -29,5 +29,9 @@ router.post('/login', login);
 
 // Ruta para obtener información del usuario actual
 router.get('/user', verifyToken, getCurrentUser);
+
+
+// ruta para actualizar usuario
+router.put('/user/update', verifyToken, updateUser);
 
 export default router;
