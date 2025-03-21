@@ -32,3 +32,27 @@ button:disabled {
   color: red;
   margin-top: 10px;
 }
+
+/* Añadir estos estilos a los ya existentes */
+.image-upload {
+  margin-bottom: 20px;
+}
+
+.image-upload label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.image-preview {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  border: 2px solid #4caf50;
+}
+

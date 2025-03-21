@@ -8,22 +8,57 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 // Registrar usuarios
 export const register = async (req, res) => {
-  const { username, password, role } = req.body;
-  const image = req.file?.id; // Obtener el ID del archivo subido desde req.file
-
   try {
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: 'El usuario ya existe' });
+    const { username, password, image } = req.body;
+
+    // Validar campos requeridos
+    if (!username || !password) {
+      return res.status(400).json({ message: 'Usuario y contraseña son requeridos' });
     }
 
+    // Verificar si el usuario ya existe
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: 'El nombre de usuario ya está en uso' });
+    }
+
+    // Encriptar contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, password: hashedPassword, image, role });
+
+    // Crear nuevo usuario con la imagen
+    const newUser = new User({
+      username,
+      password: hashedPassword,
+      image: image, // Asignar directamente el ID de la imagen
+      role: 'user'
+    });
+
+    // Guardar usuario
     await newUser.save();
 
-    res.status(201).json({ message: 'Usuario registrado con éxito' });
+    console.log('Usuario creado:', {
+      id: newUser._id,
+      username: newUser.username,
+      role: newUser.role,
+      imageId: newUser.image
+    });
+
+    res.status(201).json({ 
+      message: 'Usuario registrado exitosamente',
+      user: {
+        id: newUser._id,
+        username: newUser.username,
+        role: newUser.role,
+        imageId: newUser.image // Incluir el ID de la imagen en la respuesta
+      }
+    });
+
   } catch (error) {
-    res.status(500).json({ message: 'Error al registrar el usuario', error });
+    console.error('Error en registro:', error);
+    res.status(500).json({ 
+      message: 'Error al registrar usuario', 
+      error: error.message 
+    });
   }
 };
 

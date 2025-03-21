@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   const [user, setUser] = useState({
