@@ -8,7 +8,8 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 // Registrar usuarios
 export const register = async (req, res) => {
-  const { username, password, image, role } = req.body;
+  const { username, password, role } = req.body;
+  const image = req.file?.id; // Obtener el ID del archivo subido desde req.file
 
   try {
     const existingUser = await User.findOne({ username });

@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Styles/Navbar.css'; // Archivo CSS para estilos
+import './Styles/Navbar.css';
 
 const Navbar = ({ user, onLogout }) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  
+  // Always use placeholder images
+  const placeholderImage = '/images/ProfilePlaceholder.png';
+  const logoPlaceholder = '/images/others/miniLogoProyecto.png';
 
   const handleLogout = () => {
-    onLogout(); // Llama a la función de logout pasada como prop
-    navigate('/'); // Redirige a la página de inicio
+    onLogout();
+    navigate('/');
   };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo */}
         <div className="navbar-logo" onClick={() => navigate('/main')}>
           <img
-            src="/images/others/miniLogoProyecto.png" // Ruta correcta desde la raíz del servidor
+            src={logoPlaceholder}
             alt="Inicio"
             className="navbar-logo-img"
           />
@@ -31,11 +34,11 @@ const Navbar = ({ user, onLogout }) => {
               onClick={() => setMenuOpen(!menuOpen)}
             >
               <img
-                src={user.image || '/images/ProfilePlaceholder.png'} // Imagen del usuario o placeholder
+                src={placeholderImage}
                 alt="Avatar"
                 className="navbar-user-avatar"
               />
-              <span className="navbar-user-name">{user.name}</span>
+              <span className="navbar-user-name">{user.name || "Usuario"}</span>
               <svg
                 className={`navbar-user-icon ${menuOpen ? 'rotate' : ''}`}
                 fill="none"

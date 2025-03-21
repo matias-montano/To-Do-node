@@ -5,13 +5,13 @@ import Dashboard from './components/Dashboard';
 import Register from './components/Register';
 import Welcome from './components/Welcome';
 import Main from './components/Main';
-import Navbar from './components/Navbar'; // Importa el componente Navbar
+import Navbar from './components/Navbar';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   const [user, setUser] = useState({
     name: 'Usuario',
-    image: '/images/ProfilePlaceholder.png', // Imagen de ejemplo
+    image: '/images/ProfilePlaceholder.png',
   });
 
   const handleLogin = () => {
@@ -21,29 +21,28 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    window.location.href = '/'; // Redirigir manualmente a la página de inicio
+    window.location.href = '/';
   };
 
-  const location = useLocation(); // Hook para obtener la ruta actual
-
-  // Rutas donde no se debe mostrar el Navbar
+  const location = useLocation();
   const hideNavbarRoutes = ['/login', '/register', '/'];
 
   return (
     <>
-      {/* Renderiza el Navbar solo si la ruta actual no está en hideNavbarRoutes */}
       {!hideNavbarRoutes.includes(location.pathname) && (
         <Navbar user={user} onLogout={handleLogout} />
       )}
       <Routes>
-        <Route
-          path="/"
-          element={<Navigate to={isLoggedIn ? '/main' : '/'} replace />}
-        />
+        {/* Fixed Welcome route */}
+        <Route path="/" element={isLoggedIn ? <Navigate to="/main" replace /> : <Welcome />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/main" element={<Main onLogout={handleLogout} />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/main" element={
+          isLoggedIn ? <Main onLogout={handleLogout} /> : <Navigate to="/login" replace />
+        } />
+        <Route path="/dashboard" element={
+          isLoggedIn ? <Dashboard /> : <Navigate to="/login" replace />
+        } />
       </Routes>
     </>
   );
