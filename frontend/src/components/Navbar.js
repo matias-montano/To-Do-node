@@ -1,19 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getToken } from '../services/authService';
 import './Styles/Navbar.css';
 
 const Navbar = ({ user, onLogout }) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
   
-  // Always use placeholder images
-  const placeholderImage = '/images/ProfilePlaceholder.png';
   const logoPlaceholder = '/images/others/miniLogoProyecto.png';
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = getToken();
+        const response = await fetch('http://localhost:4000/auth/user', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          setUserData(data);
+        }
+      } catch (error) {
+        console.error('Error al obtener datos de usuario:', error);
+      }
+    };
+    
+    fetchUserData();
+  }, []);
 
   const handleLogout = () => {
     onLogout();
     navigate('/');
   };
+
+  // Determinar qué imagen mostrar
+  const avatarSrc = userData?.imageId 
+    ? `http://localhost:4000/auth/images/${userData.imageId}`
+    : '/images/ProfilePlaceholder.png';
 
   return (
     <nav className="navbar">
@@ -34,11 +61,11 @@ const Navbar = ({ user, onLogout }) => {
               onClick={() => setMenuOpen(!menuOpen)}
             >
               <img
-                src={placeholderImage}
+                src={avatarSrc}
                 alt="Avatar"
                 className="navbar-user-avatar"
               />
-              <span className="navbar-user-name">{user.name || "Usuario"}</span>
+              <span className="navbar-user-name">{userData?.username || "Usuario"}</span>
               <svg
                 className={`navbar-user-icon ${menuOpen ? 'rotate' : ''}`}
                 fill="none"
@@ -54,7 +81,6 @@ const Navbar = ({ user, onLogout }) => {
               </svg>
             </button>
 
-            {/* Menú desplegable */}
             {menuOpen && (
               <div className="navbar-user-menu">
                 <button

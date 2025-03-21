@@ -3,6 +3,9 @@ import { register, login } from '../controllers/authController.js';
 import upload from '../config/gridFsConfig.js';
 import mongoose from 'mongoose';
 import pkg from 'mongodb';
+import { verifyToken } from '../middleware/authMiddleware.js';
+import { getCurrentUser } from '../controllers/UserController.js';
+
 const { GridFSBucket } = pkg;
 
 const router = express.Router();
@@ -15,6 +18,22 @@ mongoose.connection.once('open', () => {
   });
 });
 
+// Ruta para obtener imágenes
+router.get('/images/:id', (req, res) => {
+  try {
+    const id = new mongoose.Types.ObjectId(req.params.id);
+    const downloadStream = gfs.openDownloadStream(id);
+    
+    downloadStream.on('error', () => {
+      return res.status(404).json({ message: 'Imagen no encontrada' });
+    });
+    
+    downloadStream.pipe(res);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener la imagen', error: error.message });
+  }
+});
+
 // Rutas existentes
 router.post('/register', register);
 router.post('/login', login);
@@ -25,27 +44,7 @@ router.post('/upload', upload.single('image'), (req, res) => {
   res.status(201).json({ message: 'Imagen subida con éxito.', fileId: req.file.id });
 });
 
-// Nueva ruta para servir imágenes (AÑADIR ESTO)
-router.get('/images/:id', (req, res) => {
-  try {
-    const id = new mongoose.Types.ObjectId(req.params.id);
-    
-    // Buscar el archivo por ID
-    gfs.find({ _id: id }).toArray((err, files) => {
-      if (err || !files || files.length === 0) {
-        return res.status(404).json({ message: 'Imagen no encontrada' });
-      }
-      
-      // Configurar headers
-      res.set('Content-Type', files[0].contentType);
-      
-      // Crear stream de lectura
-      const readStream = gfs.openDownloadStream(id);
-      readStream.pipe(res);
-    });
-  } catch (error) {
-    res.status(500).json({ message: 'Error al obtener la imagen', error });
-  }
-});
+// Ruta para obtener información del usuario actual
+router.get('/user', verifyToken, getCurrentUser);
 
 export default router;

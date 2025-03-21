@@ -6,6 +6,8 @@ import Register from './components/Register';
 import Welcome from './components/Welcome';
 import Main from './components/Main';
 import Navbar from './components/Navbar';
+import Profile from './components/Profile';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
@@ -38,8 +40,13 @@ function App() {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/main" element={
-          isLoggedIn ? <Main onLogout={handleLogout} /> : <Navigate to="/login" replace />
+              isLoggedIn ? <Main onLogout={handleLogout} user={user} /> : <Navigate to="/login" replace />
+
         } />
+        <Route 
+          path="/profile" 
+          element={isLoggedIn ? <Profile /> : <Navigate to="/login" replace />} 
+        />
         <Route path="/dashboard" element={
           isLoggedIn ? <Dashboard /> : <Navigate to="/login" replace />
         } />
