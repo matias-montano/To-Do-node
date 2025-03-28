@@ -1,0 +1,98 @@
+.member-management-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.add-member-form {
+  background-color: #2d3748;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.add-member-form form {
+  display: flex;
+  gap: 15px;
+}
+
+.add-member-form select {
+  flex: 2;
+  padding: 8px;
+  background-color: #1a202c;
+  border: 1px solid #4a5568;
+  color: white;
+  border-radius: 4px;
+}
+
+.add-member-form button {
+  flex: 1;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.add-member-form button:disabled {
+  background-color: #2c5c2e;
+  cursor: not-allowed;
+}
+
+.members-list {
+  background-color: #2d3748;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #4a5568;
+}
+
+th {
+  background-color: #1a202c;
+  color: #cbd5e0;
+}
+
+.remove-button {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.loading, .error-message {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 18px;
+}
+
+.error-message {
+  color: #e53e3e;
+}

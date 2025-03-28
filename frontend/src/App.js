@@ -10,6 +10,8 @@ import Profile from './components/Profile';
 import GroupManagement from './components/GroupManagement';
 import GroupList from './components/GroupList'; 
 import { getToken } from './services/authService';
+import GroupMemberManagement from './components/GroupMemberManagement';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
@@ -110,6 +112,14 @@ function App() {
           element={
             isLoggedIn && user?.role === 'admin' ? 
               <GroupManagement user={user} /> : 
+              <Navigate to="/main" replace />
+          } 
+        />
+        <Route 
+          path="/groups/members/:groupId" 
+          element={
+            isLoggedIn && user?.role === 'admin' ? 
+              <GroupMemberManagement /> : 
               <Navigate to="/main" replace />
           } 
         />

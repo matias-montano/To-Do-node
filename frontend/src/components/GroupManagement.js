@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getToken } from '../services/authService';
+import { useNavigate } from 'react-router-dom';
 import './Styles/GroupManagement.css';
 
 const GroupManagement = ({ user }) => {
+  const navigate = useNavigate();
   const [editingGroup, setEditingGroup] = useState(null);
-
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -50,7 +51,11 @@ const GroupManagement = ({ user }) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(newGroup)
+        body: JSON.stringify({
+          name: editingGroup.name,
+          description: editingGroup.description,
+          visibility: editingGroup.visibility
+        })
       });
 
       if (response.ok) {
@@ -107,8 +112,13 @@ const GroupManagement = ({ user }) => {
     }
   };
 
-  if (loading) return <div>Cargando...</div>;
-  if (error) return <div>Error: {error}</div>;
+  // Función para navegar a la gestión de miembros
+  const goToMemberManagement = (groupId) => {
+    navigate(`/groups/members/${groupId}`);
+  };
+
+  if (loading) return <div className="loading">Cargando...</div>;
+  if (error) return <div className="error-message">Error: {error}</div>;
 
   return (
     <div className="group-management-container">
@@ -124,13 +134,10 @@ const GroupManagement = ({ user }) => {
       {/* Formulario de Crear/Editar */}
       {(showCreateForm || editingGroup) && (
         <form 
-          onSubmit={editingGroup ? 
-            (e) => {
-              e.preventDefault();
-              handleEditGroup(editingGroup._id);
-            } : 
-            handleCreateGroup
-          } 
+          onSubmit={(e) => {
+            e.preventDefault();
+            editingGroup ? handleEditGroup(editingGroup._id) : handleCreateGroup(e);
+          }} 
           className="create-group-form"
         >
           <h3>{editingGroup ? 'Editar Grupo' : 'Crear Nuevo Grupo'}</h3>
@@ -199,6 +206,12 @@ const GroupManagement = ({ user }) => {
                 onClick={() => setEditingGroup(group)}
               >
                 Editar
+              </button>
+              <button 
+                className="members-button"
+                onClick={() => goToMemberManagement(group._id)}
+              >
+                Miembros
               </button>
               <button 
                 className="delete-button"

@@ -14,7 +14,7 @@ export const createGroup = async (req, res) => {
       createdBy: req.user.id,
       members: [{ 
         user: req.user.id, 
-        role: 'owner' 
+        role: 'admin' 
       }]
     });
 
@@ -22,6 +22,84 @@ export const createGroup = async (req, res) => {
     res.status(201).json(group);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+};
+
+// Eliminar miembro de un grupo
+export const removeMember = async (req, res) => {
+  try {
+    const { groupId, userId } = req.params;
+    
+    const group = await Group.findById(groupId);
+    if (!group) {
+      return res.status(404).json({ message: 'Grupo no encontrado' });
+    }
+    
+    // Filtrar para eliminar el miembro
+    group.members = group.members.filter(
+      member => member.user.toString() !== userId
+    );
+    
+    await group.save();
+    
+    // Eliminar el grupo de la lista de grupos del usuario
+    await User.findByIdAndUpdate(
+      userId,
+      { $pull: { groups: groupId } }
+    );
+    
+    res.json({ message: 'Miembro eliminado correctamente' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Actualizar rol de un miembro
+export const updateMemberRole = async (req, res) => {
+  try {
+    const { groupId, userId } = req.params;
+    const { role } = req.body;
+    
+    if (!['admin', 'member'].includes(role)) {
+      return res.status(400).json({ message: 'Rol no válido' });
+    }
+    
+    const group = await Group.findById(groupId);
+    if (!group) {
+      return res.status(404).json({ message: 'Grupo no encontrado' });
+    }
+    
+    const memberIndex = group.members.findIndex(
+      member => member.user.toString() === userId
+    );
+    
+    if (memberIndex === -1) {
+      return res.status(404).json({ message: 'Miembro no encontrado en el grupo' });
+    }
+    
+    group.members[memberIndex].role = role;
+    await group.save();
+    
+    res.json({ message: 'Rol actualizado correctamente' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Obtener un grupo específico por ID
+export const getGroupById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const group = await Group.findById(id)
+      .populate('members.user', 'username email'); // Popula los datos de los usuarios
+    
+    if (!group) {
+      return res.status(404).json({ message: 'Grupo no encontrado' });
+    }
+    
+    res.json(group);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
