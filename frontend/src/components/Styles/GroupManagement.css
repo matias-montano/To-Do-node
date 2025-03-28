@@ -1,0 +1,111 @@
+.group-management-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.create-group-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.create-group-form {
+  background-color: #2d3748;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.create-group-form input,
+.create-group-form textarea,
+.create-group-form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  background-color: #1a202c;
+  border: 1px solid #4a5568;
+  color: white;
+  border-radius: 4px;
+}
+
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.group-card {
+  background-color: #2d3748;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.group-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.group-actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.group-actions button:first-child {
+  background-color: #4299e1;
+  color: white;
+}
+
+.group-actions button:last-child {
+  background-color: #f56565;
+  color: white;
+}
+
+
+.visibility-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.visibility-badge.private {
+  background-color: #718096;
+  color: white;
+}
+
+.visibility-badge.public {
+  background-color: #48BB78;
+  color: white;
+}
+
+.group-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.group-description {
+  color: #718096;
+  margin: 8px 0;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.form-buttons button {
+  flex: 1;
+}

@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   department: { type: String }, // Departamento
   role: { 
     type: String, 
-    enum: ['user', 'admin', 'team-lead', 'project-manager', 'backend-dev', 'frontend-dev', 'fullstack-dev', 'designer', 'qa-engineer', 'devops-engineer', 'data-scientist', 'product-owner'],
+    enum: ['user', 'admin', , 'team-lead', 'project-manager', 'backend-dev', 'frontend-dev', 'fullstack-dev', 'designer', 'qa-engineer', 'devops-engineer', 'data-scientist', 'product-owner'],
     default: 'user' 
   },
   
@@ -21,10 +21,11 @@ const userSchema = new mongoose.Schema({
   firstName: { type: String },
   lastName: { type: String },
   dateOfBirth: { type: Date },
-
+  
   // Datos profesionales adicionales
   skills: [{ type: String }], // Habilidades/tecnologías
   teams: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Team' }],
+  groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Group' }], // Nueva referencia a grupos
   
   // Metadatos
   joinedAt: { type: Date, default: Date.now },

@@ -18,7 +18,7 @@ const Profile = () => {
     const fetchUserData = async () => {
       try {
         const token = getToken();
-        const response = await fetch('http://localhost:4000/auth/user', {
+        const response = await fetch('http://localhost:4000/api/v1/auth/user', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -105,7 +105,7 @@ const Profile = () => {
       }
   
       // Actualizar datos del usuario
-      const response = await fetch('http://localhost:4000/auth/user/update', {
+      const response = await fetch('http://localhost:4000/api/v1/auth/user/update', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ const Profile = () => {
           <>
             <div className="profile-header">
               <img
-                src={userData?.imageId ? `http://localhost:4000/auth/images/${userData.imageId}` : '/images/ProfilePlaceholder.png'}
+                src={userData?.imageId ? `http://localhost:4000/api/v1/auth/images/${userData.imageId}` : '/images/ProfilePlaceholder.png'}
                 alt="Perfil"
                 className="profile-avatar"
               />

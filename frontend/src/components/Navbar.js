@@ -14,7 +14,7 @@ const Navbar = ({ user, onLogout }) => {
     const fetchUserData = async () => {
       try {
         const token = getToken();
-        const response = await fetch('http://localhost:4000/auth/user', {
+        const response = await fetch('http://localhost:4000/api/v1/auth/user', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -37,11 +37,10 @@ const Navbar = ({ user, onLogout }) => {
     navigate('/');
   };
 
-  // Determinar qué imagen mostrar
-  const avatarSrc = userData?.imageId 
-    ? `http://localhost:4000/auth/images/${userData.imageId}`
-    : '/images/ProfilePlaceholder.png';
 
+  const avatarSrc = userData?.imageId 
+    ? `http://localhost:4000/api/v1/auth/images/${userData.imageId}`
+    : '/images/ProfilePlaceholder.png';
   return (
     <nav className="navbar">
       <div className="navbar-container">

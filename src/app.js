@@ -7,6 +7,7 @@ import dbConfig from './config/dbConfig.js';
 import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import groupRoutes from './routes/groupRoutes.js';
 
 
 
@@ -34,8 +35,18 @@ app.get('/', (req, res) => {
 
 
 // Rutas
-app.use('/tasks', taskRoutes); // tareas
-app.use('/auth', authRoutes); // autenticación
+app.use('/api/v1/tasks', taskRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/groups', groupRoutes);
+
+// Manejador de errores global
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    message: 'Internal Server Error',
+    error: process.env.NODE_ENV === 'development' ? err.message : {}
+  });
+});
 
 let server;
 

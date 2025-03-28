@@ -45,7 +45,7 @@ const Register = () => {
         const imageFormData = new FormData();
         imageFormData.append('image', formData.image);
         
-        const imageResponse = await fetch('http://localhost:4000/auth/upload', {
+        const imageResponse = await fetch('http://localhost:4000/api/v1/auth/upload', {
           method: 'POST',
           body: imageFormData,
         });

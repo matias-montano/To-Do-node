@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import { getToken } from '../services/authService';
 import './Styles/Main.css';
 
 const Main = ({ onLogout, user }) => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   
@@ -10,7 +12,8 @@ const Main = ({ onLogout, user }) => {
     const fetchUserData = async () => {
       try {
         const token = getToken();
-        const response = await fetch('http://localhost:4000/auth/user', {
+        // Updated URL to include /api/v1/ prefix
+        const response = await fetch('http://localhost:4000/api/v1/auth/user', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -43,7 +46,8 @@ const Main = ({ onLogout, user }) => {
           <div className="user-avatar-container">
             {userData.imageId ? (
               <img 
-                src={`http://localhost:4000/auth/images/${userData.imageId}`}
+                // Updated URL to include /api/v1/ prefix
+                src={`http://localhost:4000/api/v1/auth/images/${userData.imageId}`}
                 alt="Perfil de usuario"
                 className="user-avatar-image"
               />
@@ -78,11 +82,21 @@ const Main = ({ onLogout, user }) => {
           <span className="button-icon">📅</span>
           <span className="button-text">Calendario</span>
         </button>
-        <button className="navigation-button button-standard">
-          <span className="button-icon">👥</span>
-          <span className="button-text">Equipo</span>
-        </button>
+        <button 
+              className="navigation-button button-admin"
+              onClick={() => navigate('/groups')}
+            >
+              <span className="button-icon">👥</span>
+              <span className="button-text">Gestión de Grupos</span>
+            </button>
       </div>
+      <button 
+          className="navigation-button button-standard"
+          onClick={() => navigate('/groups-list')}
+        >
+          <span className="button-icon">🔍</span>
+          <span className="button-text">Ver Grupos</span>
+        </button>
     </div>
   );
 };
