@@ -59,21 +59,21 @@ const Register = () => {
       }
 
       // Registrar usuario
-      const registerResponse = await fetch('http://localhost:4000/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          password: formData.password,
-          email: formData.email,
-          phoneNumber: formData.phoneNumber,
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          image: imageId
-        }),
-      });
+const registerResponse = await fetch('http://localhost:4000/api/v1/auth/register', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    username: formData.username,
+    password: formData.password,
+    email: formData.email,
+    phoneNumber: formData.phoneNumber,
+    firstName: formData.firstName,
+    lastName: formData.lastName,
+    image: imageId
+  }),
+});
 
       const registerData = await registerResponse.json();
       

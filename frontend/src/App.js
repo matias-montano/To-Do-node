@@ -11,6 +11,8 @@ import GroupManagement from './components/GroupManagement';
 import GroupList from './components/GroupList'; 
 import { getToken } from './services/authService';
 import GroupMemberManagement from './components/GroupMemberManagement';
+import UserManagement from './components/UserManagement';
+
 
 
 function App() {
@@ -131,7 +133,16 @@ function App() {
               <Navigate to="/login" replace />
           } 
         />
-      </Routes>
+      
+      <Route 
+          path="/admin/users" 
+          element={
+            isLoggedIn && user?.role === 'admin' ? 
+              <UserManagement /> : 
+              <Navigate to="/main" replace />
+          } 
+        />
+        </Routes>
     </>
   );
 }

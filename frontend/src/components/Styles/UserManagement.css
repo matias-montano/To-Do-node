@@ -1,0 +1,234 @@
+.user-management-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.user-management-container h1 {
+  margin-bottom: 20px;
+  color: #f0f0f0;
+}
+
+/* Estilos para la tabla de usuarios */
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #2d3748;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.users-table th,
+.users-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #4a5568;
+}
+
+.users-table th {
+  background-color: #1a202c;
+  color: #cbd5e0;
+  font-weight: bold;
+}
+
+.users-table tr:last-child td {
+  border-bottom: none;
+}
+
+.users-table tr:hover {
+  background-color: #3a4556;
+}
+
+/* Fila de administrador con estilo especial */
+.admin-row {
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.admin-row:hover {
+  background-color: rgba(76, 175, 80, 0.2);
+}
+
+/* Badges para roles y estados */
+.role-badge, .status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  display: inline-block;
+}
+
+/* Estilos para distintos roles */
+.role-badge.admin {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.role-badge.user {
+  background-color: #2196F3;
+  color: white;
+}
+
+.role-badge.fullstack-dev,
+.role-badge.frontend-dev,
+.role-badge.backend-dev,
+.role-badge.devops-engineer {
+  background-color: #9C27B0;
+  color: white;
+}
+
+.role-badge.designer {
+  background-color: #FF9800;
+  color: white;
+}
+
+.role-badge.qa-engineer {
+  background-color: #795548;
+  color: white;
+}
+
+.role-badge.team-lead,
+.role-badge.project-manager,
+.role-badge.product-owner {
+  background-color: #F44336;
+  color: white;
+}
+
+/* Estilos para distintos estados */
+.status-badge.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.status-badge.inactive {
+  background-color: #9E9E9E;
+  color: white;
+}
+
+.status-badge.on-leave {
+  background-color: #FFC107;
+  color: black;
+}
+
+/* Estilos para las celdas de acciones */
+.actions-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.actions-cell button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-button {
+  background-color: #2196F3;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #1976D2;
+}
+
+.delete-button {
+  background-color: #F44336;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #D32F2F;
+}
+
+/* Estilos para el formulario de edición */
+.edit-form-container {
+  background-color: #2d3748;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form-container h2 {
+  color: #f0f0f0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #4a5568;
+  padding-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #cbd5e0;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  background-color: #1a202c;
+  border: 1px solid #4a5568;
+  color: white;
+  border-radius: 4px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #63B3ED;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.form-buttons .save-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.form-buttons .save-button:hover {
+  background-color: #388E3C;
+}
+
+.form-buttons .cancel-button {
+  background-color: #9E9E9E;
+  color: white;
+}
+
+.form-buttons .cancel-button:hover {
+  background-color: #757575;
+}
+
+.admin-note {
+  color: #FFC107;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2em;
+}
+
+.error {
+  color: #F44336;
+}

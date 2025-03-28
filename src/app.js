@@ -8,6 +8,8 @@ import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import groupRoutes from './routes/groupRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
+
 
 
 
@@ -38,6 +40,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/tasks', taskRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/groups', groupRoutes);
+app.use('/api/v1/admin', adminRoutes);
 
 // Manejador de errores global
 app.use((err, req, res, next) => {

@@ -97,6 +97,13 @@ const Main = ({ onLogout, user }) => {
           <span className="button-icon">🔍</span>
           <span className="button-text">Ver Grupos</span>
         </button>
+        <button 
+        className="navigation-button button-admin"
+        onClick={() => navigate('/admin/users')}
+      >
+        <span className="button-icon">👤🔍</span>
+        <span className="button-text">Gestión de Usuarios</span>
+      </button>
     </div>
   );
 };
