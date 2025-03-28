@@ -84,10 +84,11 @@ const Profile = () => {
   
     try {
       const token = getToken();
-      const formData = new FormData();
+      let imageId = userData?.imageId; // Mantener la imagen existente por defecto
       
-      // Agregar imagen si se seleccionó una
+      // Solo procesar imagen si se seleccionó una nueva
       if (editForm.image) {
+        const formData = new FormData();
         formData.append('image', editForm.image);
         const imageResponse = await fetch('http://localhost:4000/auth/upload', {
           method: 'POST',
@@ -99,7 +100,7 @@ const Profile = () => {
   
         if (imageResponse.ok) {
           const imageData = await imageResponse.json();
-          editForm.imageId = imageData.fileId;
+          imageId = imageData.fileId; // Actualizar imageId solo si se subió una nueva imagen
         }
       }
   
@@ -111,14 +112,14 @@ const Profile = () => {
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          password: editForm.password || undefined, // Solo enviar si hay cambio
+          password: editForm.password || undefined,
           email: editForm.email,
           phoneNumber: editForm.phoneNumber,
           firstName: editForm.firstName,
           lastName: editForm.lastName,
           dateOfBirth: editForm.dateOfBirth,
           skills: editForm.skills.split(',').map(skill => skill.trim()).filter(Boolean),
-          imageId: editForm.imageId // ID de la imagen si se subió una nueva
+          imageId: imageId // Usar el ID de la imagen existente o el nuevo
         })
       });
   
@@ -126,6 +127,8 @@ const Profile = () => {
         const updatedUser = await response.json();
         setUserData(updatedUser);
         setIsEditing(false);
+        // Recargar la página después de una actualización exitosa
+        window.location.reload();
       } else {
         const error = await response.json();
         throw new Error(error.message);
