@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getToken } from '../services/authService';
+import './Styles/Main.css';
 
 const Main = ({ onLogout, user }) => {
   const [userData, setUserData] = useState(null);
@@ -28,41 +29,60 @@ const Main = ({ onLogout, user }) => {
     
     fetchUserData();
   }, []);
+
+  const getInitials = (username) => {
+    return username ? username.charAt(0).toUpperCase() : '?';
+  };
   
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>Bienvenido al Main</h1>
-      <p>Esta es la página principal después de iniciar sesión.</p>
-      <p>Esta es la página principal después de iniciar sesión.</p>
+    <div className="main-container">
+      <h1 className="main-title">Panel Principal</h1>
+      
       {userData && (
-        <div style={{ marginTop: '20px' }}>
-          <h2>Perfil de Usuario</h2>
-          <p>Usuario: {userData.username}</p>
-          {userData.imageId && (
-            <img 
-              src={`http://localhost:4000/auth/images/${userData.imageId}`}
-              alt="Perfil de usuario"
-              style={{ width: '150px', height: '150px', borderRadius: '50%', marginTop: '10px' }}
-            />
-          )}
+        <div className="user-profile-container">
+          <div className="user-avatar-container">
+            {userData.imageId ? (
+              <img 
+                src={`http://localhost:4000/auth/images/${userData.imageId}`}
+                alt="Perfil de usuario"
+                className="user-avatar-image"
+              />
+            ) : (
+              <div className="user-avatar-placeholder">
+                {getInitials(userData.username)}
+              </div>
+            )}
+          </div>
+          <div className="user-info">
+            <h2>{userData.username}</h2>
+            <p>{userData.email}</p>
+            <p className={`role-${userData.role?.toLowerCase() || 'user'}`}>
+              {userData.role || 'Usuario'}
+            </p>
+          </div>
         </div>
       )}
-      
-      <button
-        onClick={onLogout}
-        style={{
-          marginTop: '20px',
-          padding: '10px 20px',
-          fontSize: '16px',
-          backgroundColor: '#4caf50',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-        }}
-      >
-        Logout
-      </button>
+
+      <div className="navigation-grid">
+        {userData?.role === 'admin' && (
+          <button className="navigation-button button-admin">
+            <span className="button-icon">⚙️</span>
+            <span className="button-text">Admin Panel</span>
+          </button>
+        )}
+        <button className="navigation-button button-standard">
+          <span className="button-icon">📝</span>
+          <span className="button-text">Mis Tareas</span>
+        </button>
+        <button className="navigation-button button-standard">
+          <span className="button-icon">📅</span>
+          <span className="button-text">Calendario</span>
+        </button>
+        <button className="navigation-button button-standard">
+          <span className="button-icon">👥</span>
+          <span className="button-text">Equipo</span>
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,126 @@
+.main-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #0e4a8527;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
+
+.main-title {
+  color: #dfd2d2;
+  margin-bottom: 20px;
+}
+
+.user-profile-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: rgb(114, 82, 82);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 60%;
+  margin-right: auto; /* Cambiado de margin-left a margin-right */
+  margin-left: 0; /* Asegura que esté alineado a la izquierda */
+  max-width: 450px;
+}
+
+.user-avatar-container {
+  margin-right: 15px;  /* Reducido el margen */
+}
+
+.user-avatar-image {
+  width: 80px;  /* Tamaño más pequeño */
+  height: 80px;  /* Tamaño más pequeño */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #68cc6b5d;
+}
+
+.user-avatar-placeholder {
+  width: 80px;  /* Tamaño más pequeño */
+  height: 80px;  /* Tamaño más pequeño */
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;  /* Fuente más pequeña */
+  color: #757575;
+}
+
+.user-info {
+  text-align: left; /* Cambiado a left para mejor legibilidad cuando está a la izquierda */
+  font-size: 14px;  /* Texto más pequeño */
+}
+
+.user-info h2 {
+  margin-bottom: 5px;
+  color: #f0f0f0;
+  font-size: 18px;  /* Título más pequeño */
+}
+
+.user-info p {
+  margin: 5px 0;
+  color: #e0e0e0;
+}
+
+.role-admin {
+  background-color: #d32f2f;
+}
+
+.role-user {
+  background-color: #2e7d32;
+}
+
+.navigation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.navigation-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 15px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+  height: 120px;
+}
+
+.button-standard {
+  background-color: #3274ca3b;
+}
+
+.button-standard:hover {
+  background-color: #388e3c46;
+  transform: translateY(-5px);
+}
+
+.button-admin {
+  background-color: #ff9800;
+}
+
+.button-admin:hover {
+  background-color: #f57c00;
+  transform: translateY(-5px);
+}
+
+.button-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.button-text {
+  font-weight: bold;
+}
