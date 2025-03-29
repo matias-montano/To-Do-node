@@ -16,6 +16,9 @@ import ProjectManagement from './components/ProjectManagement';
 import CreateProject from './components/CreateProject';
 import ProjectDetails from './components/ProjectDetails';
 import EditProject from './components/EditProject';
+import NotesList from './components/Notes';
+import NoteForm from './components/NoteForm';
+import NoteDetail from './components/NoteDetail';
 
 
 function App() {
@@ -145,6 +148,22 @@ function App() {
               <Navigate to="/main" replace />
           } 
         />
+        <Route 
+  path="/notes" 
+  element={
+    isLoggedIn ? 
+      <NotesList /> : 
+      <Navigate to="/login" replace />
+  } 
+/>
+<Route 
+  path="/projects/:projectId/notes" 
+  element={
+    isLoggedIn ? 
+      <NotesList /> : 
+      <Navigate to="/login" replace />
+  } 
+/>
   <Route 
     path="/projects" 
     element={
@@ -162,7 +181,32 @@ function App() {
         <Navigate to="/main" replace />
     } 
   />
+  <Route 
+    path="/notes/new" 
+    element={
+      isLoggedIn ? 
+        <NoteForm /> : 
+        <Navigate to="/login" replace />
+    } 
+  />
   
+  <Route 
+    path="/notes/:noteId" 
+    element={
+      isLoggedIn ? 
+        <NoteDetail /> : 
+        <Navigate to="/login" replace />
+    } 
+  />
+  
+  <Route 
+    path="/projects/:projectId/notes/new" 
+    element={
+      isLoggedIn ? 
+        <NoteForm /> : 
+        <Navigate to="/login" replace />
+    } 
+  />
   <Route 
     path="/projects/:id" 
     element={
@@ -171,7 +215,6 @@ function App() {
         <Navigate to="/main" replace />
     } 
   />
-/>
 <Route 
   path="/projects/edit/:id" 
   element={

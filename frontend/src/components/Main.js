@@ -78,26 +78,34 @@ const Main = ({ onLogout, user }) => {
           <span className="button-icon">📝</span>
           <span className="button-text">Mis Tareas</span>
         </button>
+        {/* Nuevo botón para Notas */}
+        <button 
+          className="navigation-button button-standard"
+          onClick={() => navigate('/notes')}
+        >
+          <span className="button-icon">📒</span>
+          <span className="button-text">Mis Notas</span>
+        </button>
         <button className="navigation-button button-standard">
           <span className="button-icon">📅</span>
           <span className="button-text">Calendario</span>
         </button>
         <button 
-              className="navigation-button button-admin"
-              onClick={() => navigate('/groups')}
-            >
-              <span className="button-icon">👥</span>
-              <span className="button-text">Gestión de Grupos</span>
-            </button>
+          className="navigation-button button-admin"
+          onClick={() => navigate('/groups')}
+        >
+          <span className="button-icon">👥</span>
+          <span className="button-text">Gestión de Grupos</span>
+        </button>
       </div>
       <button 
-          className="navigation-button button-standard"
-          onClick={() => navigate('/groups-list')}
-        >
-          <span className="button-icon">🔍</span>
-          <span className="button-text">Ver Grupos</span>
-        </button>
-        <button 
+        className="navigation-button button-standard"
+        onClick={() => navigate('/groups-list')}
+      >
+        <span className="button-icon">🔍</span>
+        <span className="button-text">Ver Grupos</span>
+      </button>
+      <button 
         className="navigation-button button-admin"
         onClick={() => navigate('/admin/users')}
       >

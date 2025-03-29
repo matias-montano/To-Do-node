@@ -10,6 +10,7 @@ import path from 'path';
 import groupRoutes from './routes/groupRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import projectRoutes from './routes/projectRoutes.js'; 
+import noteRoutes from './routes/noteRoutes.js';
 
 
 
@@ -43,6 +44,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/groups', groupRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/projects', projectRoutes); 
+app.use('/api/v1/notes', noteRoutes);
 
 // Manejador de errores global
 app.use((err, req, res, next) => {

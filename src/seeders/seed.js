@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { seedUsers } from './userSeeder.js';
 import { seedGroups } from './groupSeeder.js';
 import { seedProjects } from './projectSeeder.js';
+import { seedNotes } from './noteSeeder.js';
 import { cleanGridFS } from './utils/gridfs.js';
 
 dotenv.config();
@@ -24,11 +25,13 @@ const seedDatabase = async () => {
     const users = await seedUsers();
     const groups = await seedGroups(users);
     const projects = await seedProjects(users, groups);
+    const notes = await seedNotes(users, projects);  
     
     console.log('Database seeded successfully!');
     console.log(`Created ${users.length} users`);
     console.log(`Created ${groups.length} groups`);
     console.log(`Created ${projects.length} projects`);
+    console.log(`Created ${notes.length} notes`);
     
   } catch (error) {
     console.error('Error seeding database:', error);
