@@ -17,9 +17,9 @@ export const seedUsers = async () => {
   
   // Hash passwords
   const salt = await bcrypt.genSalt(10);
-  const adminPassword = await bcrypt.hash('admin123', salt);
-  const developerPassword = await bcrypt.hash('dev123', salt);
-  const designerPassword = await bcrypt.hash('design123', salt);
+  const adminPassword = await bcrypt.hash('password', salt);
+  const developerPassword = await bcrypt.hash('password', salt);
+  const designerPassword = await bcrypt.hash('password', salt);
   
   // Rutas correctas a las imágenes
   const adminImagePath = path.join(__dirname, '../public/profiles/boss.jpg');

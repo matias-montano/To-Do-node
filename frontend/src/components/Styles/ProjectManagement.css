@@ -1,0 +1,262 @@
+.project-management-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .project-management-container h1 {
+    color: #f0f0f0;
+    margin-bottom: 20px;
+  }
+  
+  /* Botón para crear proyecto */
+  .create-project-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .create-project-button:hover {
+    background-color: #388E3C;
+  }
+  
+  /* Formulario para crear proyecto */
+  .create-project-form {
+    background-color: #2d3748;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-project-form h3 {
+    color: #f0f0f0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #4a5568;
+    padding-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #cbd5e0;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    background-color: #1a202c;
+    border: 1px solid #4a5568;
+    color: white;
+    border-radius: 4px;
+  }
+  
+  .form-group textarea {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  .form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .form-buttons button {
+    flex: 1;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form-buttons button:hover {
+    background-color: #388E3C;
+  }
+  
+  /* Grid de proyectos */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Tarjeta de proyecto */
+  .project-card {
+    background-color: #2d3748;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #4CAF50;
+  }
+  
+  .project-card.status-planning {
+    border-left-color: #2196F3; /* Azul */
+  }
+  
+  .project-card.status-active {
+    border-left-color: #4CAF50; /* Verde */
+  }
+  
+  .project-card.status-on-hold {
+    border-left-color: #FFC107; /* Amarillo */
+  }
+  
+  .project-card.status-completed {
+    border-left-color: #9C27B0; /* Púrpura */
+  }
+  
+  .project-card.status-cancelled {
+    border-left-color: #F44336; /* Rojo */
+  }
+  
+  .project-name {
+    padding: 15px;
+    margin: 0;
+    background-color: #1a202c;
+    color: white;
+    font-size: 18px;
+  }
+  
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: rgba(26, 32, 44, 0.5);
+  }
+  
+  .project-status,
+  .project-methodology {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+  }
+  
+  .project-status.status-planning {
+    background-color: #2196F3;
+  }
+  
+  .project-status.status-active {
+    background-color: #4CAF50;
+  }
+  
+  .project-status.status-on-hold {
+    background-color: #FFC107;
+    color: #000;
+  }
+  
+  .project-status.status-completed {
+    background-color: #9C27B0;
+  }
+  
+  .project-status.status-cancelled {
+    background-color: #F44336;
+  }
+  
+  .project-methodology {
+    background-color: #607D8B;
+  }
+  
+  .project-methodology.methodology-scrum {
+    background-color: #FF9800;
+    color: #000;
+  }
+  
+  .project-methodology.methodology-kanban {
+    background-color: #9C27B0;
+  }
+  
+  .project-description {
+    padding: 15px;
+    margin: 0;
+    color: #cbd5e0;
+    font-size: 14px;
+    height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  
+  .project-details {
+    padding: 15px;
+    background-color: rgba(26, 32, 44, 0.3);
+  }
+  
+  .project-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  .detail-label {
+    color: #a0aec0;
+  }
+  
+  .detail-value {
+    color: #f0f0f0;
+  }
+  
+  .project-actions {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+  }
+  
+  .project-actions button {
+    flex: 1;
+    padding: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .view-button {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .view-button:hover {
+    background-color: #1976D2;
+  }
+  
+  .delete-button {
+    background-color: #F44336;
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background-color: #D32F2F;
+  }
+  
+  .no-projects {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #a0aec0;
+  }
+  
+  /* Loader y errores */
+  .loading, .error {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .error {
+    color: #F44336;
+  }

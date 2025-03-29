@@ -104,6 +104,16 @@ const Main = ({ onLogout, user }) => {
         <span className="button-icon">👤🔍</span>
         <span className="button-text">Gestión de Usuarios</span>
       </button>
+      
+      {userData?.role === 'admin' && (
+        <button 
+          className="navigation-button button-admin"
+          onClick={() => navigate('/projects')}
+        >
+          <span className="button-icon">📊</span>
+          <span className="button-text">Gestión de Proyectos</span>
+        </button>
+      )}
     </div>
   );
 };

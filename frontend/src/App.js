@@ -12,7 +12,10 @@ import GroupList from './components/GroupList';
 import { getToken } from './services/authService';
 import GroupMemberManagement from './components/GroupMemberManagement';
 import UserManagement from './components/UserManagement';
-
+import ProjectManagement from './components/ProjectManagement';
+import CreateProject from './components/CreateProject';
+import ProjectDetails from './components/ProjectDetails';
+import EditProject from './components/EditProject';
 
 
 function App() {
@@ -142,6 +145,42 @@ function App() {
               <Navigate to="/main" replace />
           } 
         />
+  <Route 
+    path="/projects" 
+    element={
+      isLoggedIn && user?.role === 'admin' ? 
+        <ProjectManagement /> : 
+        <Navigate to="/main" replace />
+    } 
+  />
+  
+  <Route 
+    path="/projects/create" 
+    element={
+      isLoggedIn && user?.role === 'admin' ? 
+        <CreateProject /> : 
+        <Navigate to="/main" replace />
+    } 
+  />
+  
+  <Route 
+    path="/projects/:id" 
+    element={
+      isLoggedIn && user?.role === 'admin' ? 
+        <ProjectDetails /> : 
+        <Navigate to="/main" replace />
+    } 
+  />
+/>
+<Route 
+  path="/projects/edit/:id" 
+  element={
+    isLoggedIn && user?.role === 'admin' ? 
+      <EditProject /> : 
+      <Navigate to="/main" replace />
+  } 
+/>
+
         </Routes>
     </>
   );
